@@ -9,10 +9,11 @@ app.use(express.json())
 require('dotenv').config()
 
 const port = process.env.PORT || 4050;
+const URI = process.env.URI
 
-mongoose.connect("mongodb://localhost:27017")
+mongoose.connect(URI)
     .then(() => {
-        console.log("MongoDB Compass is connected!")
+        console.log("Server is connected to database!")
         app.get('/', (req, res) => {
             res.send("Working!!!!")
         });
