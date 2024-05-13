@@ -19,7 +19,7 @@ mongoose.connect(URI)
         });
     })
     .catch((err) => {
-        console.log(err)
+        console.log("Database Error")
     })
 
 app.listen(port, () => {
