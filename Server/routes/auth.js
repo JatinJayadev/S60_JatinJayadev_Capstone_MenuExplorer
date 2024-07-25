@@ -52,4 +52,41 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.put('/changepassword/:id', (req, res) => {
+    const id = req.params.id
+    const { password, newPassword } = req.body;
+    User.findByIdAndUpdate(id)
+        .then((user) => {
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            const hashedPassword = hashPassword(password)
+            if (hashedPassword == user.password) {
+                const newHashedPassword = hashPassword(newPassword)
+                return User.findByIdAndUpdate(id, { password: newHashedPassword })
+            } else {
+                return res.status(401).json({ message: 'Password is incorrect' });
+            }
+        })
+        .then((updatedUser) => {
+            if (updatedUser) {
+                res.status(200).json({ message: 'Password changed successfully' });
+            }
+        })
+        .catch((err) =>
+            res.status(500).json({ error: err.message })
+        );
+})
+
+app.delete('/deleteuser/:id', (req, res) => {
+    const id = req.params.id
+    User.findByIdAndDelete(id)
+        .then((deletedUser) => {
+            res.status(200).send("User deleted successfully")
+        })
+        .catch((err) => {
+            res.status(500).send(err)
+        })
+})
+
 module.exports = app;
