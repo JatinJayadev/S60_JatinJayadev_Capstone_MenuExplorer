@@ -1,3 +1,8 @@
+import GoogleLogin from "./Components/Firebase/FirebaseLogin"
+import GoogleSignup from "./Components/Firebase/FirebaseSignup"
+import Login from "./Components/Login"
+import Signup from "./Components/SignUp"
+
 function App() {
 
   return (
@@ -9,6 +14,12 @@ function App() {
         <center>
           Website is still under development process................!
         </center>
+
+        <Signup />
+        <GoogleSignup />
+
+        <Login />
+        <GoogleLogin />
       </div>
     </div >
   )
