@@ -82,7 +82,7 @@ app.post('/googlelogin', (req, res) => {
     User.findOne({ email })
         .then((user) => {
             if (!user) {
-                return res.status(404).json({ error: 'User not found' });
+                return res.status(404).json({ error: 'You are not registered!' });
             }
             const password = "google-auth"
             const hashedPassword = hashPassword(password)
@@ -90,7 +90,7 @@ app.post('/googlelogin', (req, res) => {
             if (hashedPassword == user.password) {
                 return res.status(201).send({ message: 'Logged In Successfully' })
             } else {
-                return res.status(401).send({ message: 'Invalid Credentials' })
+                return res.status(401).send({ error: 'Invalid Credentials' })
             }
         })
         .catch(err => res.status(500).json({ error: err.message }));

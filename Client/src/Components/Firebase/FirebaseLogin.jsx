@@ -17,13 +17,13 @@ const GoogleLogin = () => {
                 axios.post('http://localhost:4050/googlelogin', {
                     email: user.email
                 })
-                    .then((response) => {
+                    .then(() => {
                         alert('Login successful');
                         // navigate('/');
                     })
                     .catch((error) => {
-                        console.error('Error during authentication:', error);
-                        alert('Login failed');
+                        console.log('Error during authentication:', error);
+                        alert(error.response.data.error);
                     });
             }).catch((error) => {
                 console.error('Error during sign-in with Google:', error);

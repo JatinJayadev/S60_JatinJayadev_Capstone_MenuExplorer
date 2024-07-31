@@ -18,7 +18,7 @@ const GoogleSignup = () => {
                     name: user.displayName,
                     email: user.email
                 })
-                    .then((response) => {
+                    .then(() => {
                         alert('Signup/Login successful');
                         // navigate('/');
                     })
