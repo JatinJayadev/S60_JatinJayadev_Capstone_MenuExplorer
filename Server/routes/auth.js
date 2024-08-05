@@ -3,6 +3,7 @@ const User = require('../models/User')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 
+require('dotenv').config()
 
 const app = express()
 app.use(express.json())
@@ -11,8 +12,10 @@ function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
 }
 
-function generateToken(userId) {
-    const token = jwt.sign({ userId: userId }, 'your_secret_key', {
+const secret = process.env.secret
+
+function generateToken(userId, role) {
+    const token = jwt.sign({ userId: userId, role: role }, secret, {
         expiresIn: '1h'
     });
     return token;
@@ -43,7 +46,7 @@ app.post('/register', (req, res) => {
 
 app.post('/googlesignup', (req, res) => {
     const { name, email } = req.body;
-    const password = "google-auth"
+    const password = process.env.password
     const hashedPassword = hashPassword(password)
     User.findOne({ email })
         .then((user) => {
@@ -67,7 +70,8 @@ app.post('/login', (req, res) => {
         const plainText = hashPassword(password)
 
         if (plainText == user.password) {
-            return res.status(201).send({ message: 'Logged In Successfully' })
+            const token = generateToken(user._id, user.roles);
+            return res.status(201).send({ message: 'Logged In Successfully', token })
         } else {
             return res.status(401).send({ message: 'Invalid Credentials' })
         }
@@ -84,11 +88,12 @@ app.post('/googlelogin', (req, res) => {
             if (!user) {
                 return res.status(404).json({ error: 'You are not registered!' });
             }
-            const password = "google-auth"
+            const password = process.env.password
             const hashedPassword = hashPassword(password)
 
             if (hashedPassword == user.password) {
-                return res.status(201).send({ message: 'Logged In Successfully' })
+                const token = generateToken(user._id, user.roles);
+                return res.status(201).send({ message: 'Logged In Successfully', token })
             } else {
                 return res.status(401).send({ error: 'Invalid Credentials' })
             }
@@ -125,7 +130,7 @@ app.put('/changepassword/:id', (req, res) => {
 app.delete('/deleteuser/:id', (req, res) => {
     const id = req.params.id
     User.findByIdAndDelete(id)
-        .then((deletedUser) => {
+        .then(() => {
             res.status(200).send("User deleted successfully")
         })
         .catch((err) => {

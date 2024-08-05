@@ -2,11 +2,13 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const app = express()
-const route = require('./routes/auth')
+const authRoute = require('./routes/auth')
+const restaurantRoute = require('./routes/Restaurant')
 
 app.use(cors())
 app.use(express.json())
-app.use("/", route)
+app.use("/", authRoute)
+app.use("/", restaurantRoute)
 
 require('dotenv').config()
 
@@ -21,7 +23,7 @@ mongoose.connect(URI)
         });
     })
     .catch((err) => {
-        console.log("Database Error")
+        console.log("Database Error", err)
     })
 
 app.listen(port, () => {

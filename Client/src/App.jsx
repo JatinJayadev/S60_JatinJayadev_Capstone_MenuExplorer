@@ -1,26 +1,29 @@
-import GoogleLogin from "./Components/Firebase/FirebaseLogin"
-import GoogleSignup from "./Components/Firebase/FirebaseSignup"
+// import GoogleLogin from "./Components/Firebase/FirebaseLogin"
+// import GoogleSignup from "./Components/Firebase/FirebaseSignup"
+import Restuarants from "./Components/Restuarants"
 import Login from "./Components/Login"
+import RestaurantForm from "./Components/RestuarantForm"
 import Signup from "./Components/SignUp"
+import { Routes, Route } from "react-router-dom"
+import RestuarantDetails from "./Components/RestuarantDetails"
 
 function App() {
 
   return (
     <div>
-      <center>
-        This web application designed to help users explore restaurant menus and discover dishes from various cuisines across India. Users can search for restaurants, browse menu items, view prices, and check availability. Restaurant owners can manage their menus, update item availability, and showcase their offerings to potential customers.
-      </center>
-      <div>
-        <center>
-          Website is still under development process................!
-        </center>
-
-        <Signup />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Restuarants />} />
+        <Route path="/addRestuarant" element={<RestaurantForm />} />
+        <Route path="/restaurants/:id" element={<RestuarantDetails />} />
+      </Routes>
+      {/*
         <GoogleSignup />
 
         <Login />
-        <GoogleLogin />
-      </div>
+        <GoogleLogin /> */}
+
     </div >
   )
 }

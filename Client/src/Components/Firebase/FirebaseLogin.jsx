@@ -17,8 +17,10 @@ const GoogleLogin = () => {
                 axios.post('http://localhost:4050/googlelogin', {
                     email: user.email
                 })
-                    .then(() => {
+                    .then((response) => {
+                        localStorage.setItem('token', response.data.token);
                         alert('Login successful');
+                        console.log(response)
                         // navigate('/');
                     })
                     .catch((error) => {
