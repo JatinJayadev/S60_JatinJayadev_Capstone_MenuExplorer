@@ -1,6 +1,6 @@
 const express = require('express')
 const Restaurant = require('../models/Restaurant')
-const User = require('../models/User'); // Assuming you have a User model
+const User = require('../models/User');
 const authenticateToken = require('../middleware/auth')
 require('dotenv').config()
 
@@ -32,19 +32,33 @@ app.get('/restaurants/:id', (req, res) => {
         });
 });
 
-app.post('/updateUserRole', authenticateToken, (req, res) => {
+app.get('/restaurantsOwned', authenticateToken, (req, res) => {
     const userId = req.userId;
-    User.findByIdAndUpdate(userId, { role: owner })
-        .then((user) => {
-            if (!user) {
-                return res.status(404).send({ message: "User not found" });
-            }
-            res.status(200).send({ message: "User role updated successfully", user });
+    console.log(userId)
+
+    Restaurant.find({ owner: userId })
+        .then((restaurants) => {
+            res.status(200).send(restaurants);
         })
         .catch((err) => {
-            res.status(500).send({ message: "Error updating user role", error: err });
+            res.status(500).send({ message: "Error retrieving owned restaurants.", error: err.message });
         });
-})
+});
+
+
+// app.post('/updateUserRole', authenticateToken, (req, res) => {
+//     const userId = req.userId;
+//     User.findByIdAndUpdate(userId, { role: owner })
+//         .then((user) => {
+//             if (!user) {
+//                 return res.status(404).send({ message: "User not found" });
+//             }
+//             res.status(200).send({ message: "User role updated successfully", user });
+//         })
+//         .catch((err) => {
+//             res.status(500).send({ message: "Error updating user role", error: err });
+//         });
+// })
 
 // const changeRole = (role, userId, res) => {
 //     User.findByIdAndUpdate(userId, { role: role })
@@ -59,7 +73,7 @@ app.post('/updateUserRole', authenticateToken, (req, res) => {
 //         });
 // }
 
-app.post('/addrestaurant', authenticateToken, (req, res) => {
+app.post('/addRestaurant', authenticateToken, (req, res) => {
     const { restaurantName, mobileNumber, area, city, state, pincode, location, openingTime, closingTime, cuisineType, image, menu
     } = req.body;
 

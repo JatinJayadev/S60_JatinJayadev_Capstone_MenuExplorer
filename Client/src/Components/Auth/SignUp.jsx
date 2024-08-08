@@ -1,15 +1,15 @@
 // components/Signup.js
 import { useState } from 'react';
 import axios from 'axios';
-import GoogleSignup from './Firebase/FirebaseSignup';
+import GoogleSignup from '../Firebase/FirebaseSignup';
 import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();

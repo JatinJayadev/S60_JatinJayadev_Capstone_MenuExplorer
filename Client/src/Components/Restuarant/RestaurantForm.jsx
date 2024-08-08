@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const RestaurantForm = () => {
     const [restaurantName, setRestaurantName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
@@ -8,13 +8,14 @@ const RestaurantForm = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [pincode, setPincode] = useState('');
-    const [location, setLocation] = useState(''); // Google Maps link
+    const [location, setLocation] = useState('');
     const [openingTime, setOpeningTime] = useState('');
     const [closingTime, setClosingTime] = useState('');
-    // const [daysOfOperation, setDaysOfOperation] = useState(''); // e.g., "Mo,Tu,We,Th,Fr,Sa,Su"
+    // const [daysOfOperation, setDaysOfOperation] = useState(''); 
     const [cuisineType, setCuisineType] = useState('');
     const [image, setImage] = useState('');
     const [menu, setMenu] = useState([]);
+    const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
 
@@ -40,27 +41,21 @@ const RestaurantForm = () => {
         setMenu(newMenu);
     };
 
-    const updateUserRole = () => {
-        axios.post('http://localhost:4050/updateUserRole', token)
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const restaurantDetails = {
             restaurantName, mobileNumber, area, city, state, pincode, location, openingTime, closingTime, cuisineType, image, menu, token
         };
         console.log(restaurantDetails);
-        // Here you can handle the submission to your backend or API
-        axios.post('http://localhost:4050/addrestaurant', restaurantDetails)
+
+        axios.post('http://localhost:4050/addRestaurant', restaurantDetails, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then((response) => {
                 console.log(response)
-                updateUserRole()
+                navigate('/')
             })
             .catch((err) => {
                 console.log(err)

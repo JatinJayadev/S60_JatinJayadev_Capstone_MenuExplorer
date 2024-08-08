@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function RestuarantDetails() {
-    const { id } = useParams(); // Get the restaurant ID from the URL
+function RestaurantDetails() {
+    const { id } = useParams();
     const [restaurant, setRestaurant] = useState(null);
 
     useEffect(() => {
@@ -45,4 +45,4 @@ function RestuarantDetails() {
     );
 }
 
-export default RestuarantDetails;
+export default RestaurantDetails;
