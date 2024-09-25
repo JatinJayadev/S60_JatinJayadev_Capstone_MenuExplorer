@@ -1,19 +1,26 @@
-import React from 'react'
+import './Nav.css'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
         <nav>
-            <div>
+            <div className='nav-div'>
                 <div>
-                    <h2>Logo</h2>
+                    <h2>menuExplorer</h2>
                 </div>
-                <div>
-                    <input type="search" />
+                <div className='nav-input'>
+                    <input type="search" placeholder='Search for Restaurant' />
                 </div>
-                <div>
-                    <h2>Add a Restaurant</h2>
-                    <h2>About</h2>
-                    <h2>Profile</h2>
+                <div className='nav-div nav-div-p'>
+                    <p>
+                        <Link className='nav-link'>Add a Restaurant</Link>
+                    </p>
+                    <p>
+                        <Link className='nav-link'>About</Link>
+                    </p>
+                    <p>
+                        <Link className='nav-link'>Profile</Link>
+                    </p>
                 </div>
             </div>
         </nav>

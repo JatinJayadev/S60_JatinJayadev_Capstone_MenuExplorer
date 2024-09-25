@@ -1,0 +1,29 @@
+nav {
+    background-color: black;
+    color: white;
+    padding: 2%;
+}
+
+.nav-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-input>input {
+    outline: none;
+    width: 200%;
+    padding: 5%;
+    border-radius: 4vh;
+    border: none;
+    text-indent: 2vh;
+}
+
+p {
+    margin-right: 10vh;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+}
