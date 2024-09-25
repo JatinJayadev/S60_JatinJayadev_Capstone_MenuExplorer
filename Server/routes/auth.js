@@ -33,16 +33,30 @@ app.get('/users', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
-    const hashedPassword = hashPassword(password)
 
-    User.create({
-        name, email, password: hashedPassword, roles: 'user'
-    }).then((result) => {
-        res.status(201).send(result)
-    }).catch((err) => {
-        res.status(500).send(err)
-    })
-})
+    User.findOne({ email })
+        .then((existingUser) => {
+            if (existingUser) {
+                return res.status(400).send({ message: 'User already registered with this email.' });
+            }
+
+            const hashedPassword = hashPassword(password);
+
+            User.create({
+                name, email, password: hashedPassword, roles: 'user'
+            })
+                .then((result) => {
+                    res.status(201).send(result);
+                })
+                .catch((err) => {
+                    res.status(500).send(err);
+                });
+        })
+        .catch((err) => {
+            res.status(500).send(err);
+        });
+});
+
 
 app.post('/googlesignup', (req, res) => {
     const { name, email } = req.body;
@@ -139,3 +153,13 @@ app.delete('/deleteuser/:id', (req, res) => {
 })
 
 module.exports = app;
+
+
+
+// https://chatgpt.com/c/515ba880-6dd7-45e9-a2c0-e9f86306b13e
+
+// https://chatgpt.com/c/a970bd9c-6242-4428-a42f-2396ea272769
+
+// https://chatgpt.com/c/e986323b-41f9-40cd-affc-eb91904e0898
+
+// https://chatgpt.com/c/dbede3cc-7f6b-47f8-a30a-652cb5990304

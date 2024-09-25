@@ -1,7 +1,7 @@
 // import GoogleLogin from "./Components/Firebase/FirebaseLogin"
 // import GoogleSignup from "./Components/Firebase/FirebaseSignup"
 import Restuarants from "./Components/Restuarant/Restaurants"
-import Login from "./Components/Login"
+import Login from "./Components/Auth/Login"
 import RestaurantForm from "./Components/Restuarant/RestaurantForm"
 import Signup from "./Components/Auth/SignUp"
 import { Routes, Route } from "react-router-dom"
@@ -20,12 +20,6 @@ function App() {
         <Route path="/restaurants/:id" element={<RestaurantDetails />} />
         <Route path="/manage-restaurants" element={<ManageRestaurant />} />
       </Routes>
-      {/*
-        <GoogleSignup />
-
-        <Login />
-        <GoogleLogin /> */}
-
     </div >
   )
 }

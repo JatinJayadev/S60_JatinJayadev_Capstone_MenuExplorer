@@ -4,6 +4,7 @@ import axios from 'axios';
 import GoogleSignup from '../Firebase/FirebaseSignup';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import './Signup.css'
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -24,39 +25,47 @@ const Signup = () => {
     };
 
     return (
-        <div>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <h2>Signup</h2>
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <button type="submit">Signup</button>
-                </form>
-            </div>
-            <div>
-                <GoogleSignup />
-            </div>
-            <div>
-                <span>Have an account? <Link to="/login">Login here</Link> </span>
+        <div className='container'>
+            <div className='signup-container'>
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <center>
+                            <h2 className='signup-login'>Signup</h2>
+                        </center>
+                        <hr />
+                        <label htmlFor="name">Name</label>
+                        <input
+                            type="text"
+                            placeholder="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <button type="submit">Signup</button>
+                    </form>
+                </div>
+                <div>
+                    <GoogleSignup />
+                </div>
+                <div className='span'>
+                    <span>Have an account? <Link to="/login">Login here</Link> </span>
+                </div>
             </div>
         </div>
     );
