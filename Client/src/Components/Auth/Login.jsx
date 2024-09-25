@@ -4,7 +4,7 @@ import axios from 'axios';
 import GoogleLogin from '../Firebase/FirebaseLogin';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import './Login.css'
+import './Auth.css'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -30,21 +30,23 @@ const Login = () => {
         <div className='container'>
             <div className='login-container'>
                 <div className='form'>
-                    <form onSubmit={handleSubmit}>
+                    <form className='signup-login-form' onSubmit={handleSubmit}>
                         <center>
                             <h2 className='heading'>Login</h2>
                         </center>
                         <hr />
-                        <label htmlFor="email">Email</label>
+                        <label className='signup-login-label' htmlFor="email">Email</label>
                         <input
+                            className='signup-login-input'
                             type="email"
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        <label htmlFor="pasword">Password</label>
+                        <label className='signup-login-label' htmlFor="pasword">Password</label>
                         <input
+                            className='signup-login-input'
                             type="password"
                             placeholder="Password"
                             value={password}
@@ -58,7 +60,7 @@ const Login = () => {
                     <GoogleLogin />
                 </div>
                 <div className='span'>
-                    <span>Don't have an account? <Link to="/signup">SigUp here</Link> </span>
+                    <span>Don't have an account? <Link to="/signup">SignUp here</Link> </span>
                 </div>
             </div>
         </div>

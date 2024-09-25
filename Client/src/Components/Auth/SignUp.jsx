@@ -4,7 +4,7 @@ import axios from 'axios';
 import GoogleSignup from '../Firebase/FirebaseSignup';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'
+import './Auth.css'
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -28,29 +28,32 @@ const Signup = () => {
         <div className='container'>
             <div className='signup-container'>
                 <div>
-                    <form onSubmit={handleSubmit}>
+                    <form className='signup-login-form' onSubmit={handleSubmit}>
                         <center>
                             <h2 className='signup-login'>Signup</h2>
                         </center>
                         <hr />
-                        <label htmlFor="name">Name</label>
+                        <label className='signup-login-label' htmlFor="name">Name</label>
                         <input
+                            className='signup-login-input'
                             type="text"
                             placeholder="Name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
                         />
-                        <label htmlFor="email">Email</label>
+                        <label className='signup-login-label' htmlFor="email">Email</label>
                         <input
+                            className='signup-login-input'
                             type="email"
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        <label htmlFor="password">Password</label>
+                        <label className='signup-login-label' htmlFor="password">Password</label>
                         <input
+                            className='signup-login-input'
                             type="password"
                             placeholder="Password"
                             value={password}
