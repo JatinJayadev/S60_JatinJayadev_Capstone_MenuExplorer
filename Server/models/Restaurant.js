@@ -33,7 +33,6 @@ const restaurantSchema = new mongoose.Schema({
     location: { type: String, required: true }, // Google Maps link
     openingTime: { type: String, required: true },
     closingTime: { type: String, required: true },
-    // daysOfOperation: { type: String, required: true }, // e.g., "Mo,Tu,We,Th,Fr,Sa,Su"
     cuisineType: { type: String, required: true },
     image: { type: String, required: true },
     menu: [menuSchema],

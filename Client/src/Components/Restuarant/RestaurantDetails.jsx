@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './RestaurantDetails.css'; // Make sure to import your CSS
 
 function RestaurantDetails() {
     const { id } = useParams();
@@ -22,19 +23,20 @@ function RestaurantDetails() {
     }
 
     return (
-        <div>
+        <div className="restaurant-details-container">
             <h1>{restaurant.restaurantName}</h1>
             <p>Cuisine: {restaurant.cuisineType}</p>
             <p>Location: {restaurant.location}</p>
-            <h2>Menu</h2>
-            <ul>
+
+            <h2 className='menu' >Menu</h2>
+            <ul className="menu-list">
                 {restaurant.menu.map((category) => (
-                    <li key={category.category}>
+                    <li key={category.category} className="menu-category">
                         <h3>{category.category}</h3>
                         <ul>
                             {category.items.map((item) => (
-                                <li key={item.name}>
-                                    {item.name} - ${item.price}: {item.description}
+                                <li key={item.name} className="menu-item">
+                                    <span>{item.name}</span> - ${item.price}: {item.description}
                                 </li>
                             ))}
                         </ul>

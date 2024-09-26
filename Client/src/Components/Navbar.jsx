@@ -6,14 +6,16 @@ function Navbar() {
         <nav>
             <div className='nav-div'>
                 <div>
-                    <h2>menuExplorer</h2>
+                    <h2>
+                        <Link className='logo' to='/'>menuExplorer</Link>
+                    </h2>
                 </div>
                 <div className='nav-input'>
                     <input type="search" placeholder='Search for Restaurant' />
                 </div>
                 <div className='nav-div nav-div-p'>
                     <p>
-                        <Link className='nav-link'>Add a Restaurant</Link>
+                        <Link to='/addRestuarant' className='nav-link'>Add a Restaurant</Link>
                     </p>
                     <p>
                         <Link className='nav-link'>About</Link>

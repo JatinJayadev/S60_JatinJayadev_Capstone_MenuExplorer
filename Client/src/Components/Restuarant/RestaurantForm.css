@@ -1,0 +1,187 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef;
+    /* Light gray background */
+}
+
+/* Form container */
+.restaurant-form {
+    max-width: 600px;
+    /* Maximum width for the form */
+    margin: 20px auto;
+    /* Center the form */
+    padding: 20px;
+    /* Padding around the form */
+    border: 1px solid #ccc;
+    /* Border for the form */
+    border-radius: 5px;
+    /* Rounded corners */
+    background-color: #fff;
+    /* White background for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+/* Title styling */
+.form-title {
+    font-size: 24px;
+    /* Font size for the title */
+    margin-bottom: 20px;
+    /* Spacing below the title */
+    text-align: center;
+    /* Center the title */
+}
+
+/* Input label styling */
+.form-label {
+    margin-bottom: 5px;
+    /* Spacing below labels */
+    font-weight: bold;
+    /* Bold font for labels */
+}
+
+/* Input field styling */
+.form-input {
+    width: 100%;
+    /* Full width for input fields */
+    padding: 10px;
+    /* Padding inside input fields */
+    margin-bottom: 15px;
+    /* Spacing below input fields */
+    border: 1px solid #ccc;
+    /* Light gray border */
+    border-radius: 4px;
+    /* Rounded corners */
+}
+
+/* Button styles */
+.next-button,
+.back-button,
+.submit-button,
+.add-item-button,
+.add-category-button {
+    background-color: black;
+    /* Green background */
+    color: white;
+    /* White text color */
+    padding: 10px 15px;
+    /* Padding for buttons */
+    border: none;
+    /* Remove border */
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    font-size: 16px;
+    /* Font size for buttons */
+    margin-top: 10px;
+    /* Spacing above buttons */
+}
+
+.next-button:hover,
+.back-button:hover,
+.submit-button:hover,
+.add-item-button:hover,
+.add-category-button:hover {
+    background-color: black;
+}
+
+/* Menu item styles */
+.menu-item {
+    margin: 10px 0;
+    /* Spacing around menu items */
+    padding: 15px;
+    /* Padding for menu items */
+    border: 1px solid #ccc;
+    /* Border for menu items */
+    border-radius: 5px;
+    /* Rounded corners for menu items */
+    background-color: #f9f9f9;
+    /* Light background for menu items */
+}
+
+/* Button styles */
+.back-button,
+.add-category-button,
+.next-button:hover {
+    margin-right: 1.5vh;
+}
+
+/* Error messages */
+.error-message {
+    color: #d9534f;
+    /* Red color for error messages */
+    font-size: 14px;
+    /* Font size for error messages */
+    margin-top: -10px;
+    /* Negative margin to pull it up */
+    margin-bottom: 15px;
+    /* Spacing below error messages */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .restaurant-form {
+        width: 90%;
+        /* Full width on smaller screens */
+        padding: 15px;
+        /* Adjusted padding */
+    }
+
+    .form-title {
+        font-size: 22px;
+        /* Smaller title font */
+    }
+
+    .form-input {
+        padding: 8px;
+        /* Adjusted padding */
+    }
+
+    .next-button,
+    .back-button,
+    .submit-button,
+    .add-item-button,
+    .add-category-button {
+        font-size: 14px;
+        /* Smaller button font */
+    }
+}
+
+/* Input focus effects */
+.form-input:focus {
+    border-color: black;
+    /* Green border on focus */
+    outline: none;
+    /* Remove default outline */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    /* Green shadow */
+}
+
+/* Category styling */
+.menu-category {
+    margin-bottom: 20px;
+    /* Spacing below categories */
+    padding: 20px;
+    /* Padding for category containers */
+    border: 1px solid #ddd;
+    /* Light border */
+    border-radius: 5px;
+    /* Rounded corners */
+    background: #f9f9f9;
+    /* Light background */
+}
+
+/* Step styles */
+.step {
+    padding: 20px;
+    /* Padding for each step */
+}
+
+.step:last-of-type {
+    margin-bottom: 0;
+    /* No margin below the last step */
+}

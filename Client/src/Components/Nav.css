@@ -23,6 +23,16 @@ p {
     margin-right: 10vh;
 }
 
+.logo {
+    text-decoration: none;
+    color: white;
+    margin: none;
+}
+
+h2 {
+    margin: none;
+}
+
 .nav-link {
     text-decoration: none;
     color: white;

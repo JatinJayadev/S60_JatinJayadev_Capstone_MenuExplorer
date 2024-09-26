@@ -1,0 +1,116 @@
+/* General page styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    /* Light background */
+}
+
+.restaurant-details-container {
+    max-width: 800px;
+    margin: 20px auto;
+    /* Center the container */
+    padding: 20px;
+    background-color: #fff;
+    /* White background for the content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    border-radius: 8px;
+    /* Smooth corners */
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.menu {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: black;
+    /* Accent color for the heading */
+}
+
+ul {
+    list-style-type: none;
+    /* Remove default bullet points */
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f1f3f5;
+    /* Light background for each item */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #e9ecef;
+    /* Highlight item on hover */
+}
+
+h3 {
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+    color: black;
+    /* Accent color for the category */
+}
+
+li ul {
+    margin-left: 20px;
+}
+
+li ul li {
+    background-color: #fff;
+    /* White background for menu items */
+    border: none;
+    /* No border for inner list items */
+    padding: 8px 0;
+}
+
+li ul li:hover {
+    background-color: #f1f3f5;
+    /* Subtle hover effect on menu items */
+}
+
+/* Styling the menu items */
+li ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li ul li span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .restaurant-details-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    li ul li {
+        font-size: 0.9rem;
+    }
+}
