@@ -6,13 +6,13 @@ import './RestaurantDetails.css';
 function RestaurantDetails() {
     const { id } = useParams();
     const [restaurant, setRestaurant] = useState(null);
-    const [userId, setUserId] = useState(null); // To store the logged-in user ID
-    const [showModal, setShowModal] = useState(false); // For modal visibility
-    const [currentItem, setCurrentItem] = useState(null); // For editing a menu item
+    const [userId, setUserId] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [currentItem, setCurrentItem] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        const loggedUserId = localStorage.getItem('userId'); // Assuming you store the user ID here
+        const loggedUserId = localStorage.getItem('userId');
         setUserId(loggedUserId);
 
         axios.get(`http://localhost:4050/restaurants/${id}`, {
@@ -29,8 +29,8 @@ function RestaurantDetails() {
     }, [id]);
 
     const handleUpdateClick = (item) => {
-        setCurrentItem(item); // Set the item to be updated
-        setShowModal(true); // Show modal for updating the item
+        setCurrentItem(item);
+        setShowModal(true);
     };
 
     const handleDeleteClick = (categoryId, itemId) => {
@@ -41,7 +41,6 @@ function RestaurantDetails() {
             }
         })
             .then((response) => {
-                // Refresh the menu after deleting
                 setRestaurant(response.data);
             })
             .catch((err) => {
@@ -59,8 +58,8 @@ function RestaurantDetails() {
             }
         })
             .then((response) => {
-                setRestaurant(response.data); // Update the restaurant details with the new menu
-                setShowModal(false); // Close the modal
+                setRestaurant(response.data);
+                setShowModal(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -89,7 +88,6 @@ function RestaurantDetails() {
                             <p>{item.name} - ₹{item.price}</p>
                             <p>{item.description}</p>
 
-                            {/* Show Update/Delete only if the user is the owner */}
                             {restaurant.owner === userId && (
                                 <div className="item-actions">
                                     <button onClick={() => handleUpdateClick(item)}>Update</button>
@@ -101,7 +99,6 @@ function RestaurantDetails() {
                 </div>
             ))}
 
-            {/* Modal for updating menu item */}
             {showModal && currentItem && (
                 <div className="modal">
                     <div className="modal-content">
