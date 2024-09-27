@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Restaurants from "./Components/Restaurant/Restaurants"
 import Login from "./Components/Auth/Login"
 import RestaurantForm from "./Components/Restaurant/RestaurantForm"
-import Signup from "./Components/Auth/Signup"
+import Signup from "./Components/Auth/SignUp"
 import { Routes, Route } from "react-router-dom"
 import RestaurantDetails from "./Components/Restaurant/RestaurantDetails"
 import ManageRestaurant from "./Components/Restaurant/ManageRestaurant"
