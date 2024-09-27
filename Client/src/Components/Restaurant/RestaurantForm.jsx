@@ -20,14 +20,14 @@ const RestaurantForm = () => {
     const navigate = useNavigate();
 
     const handleNext = () => {
-        if (step === 1 && (restaurantName === '' || mobileNumber === '' || cuisineType === '' || imageUrl === '')) {
-            alert('Please fill all the fields before proceeding to the next step');
-            return;
-        }
-        if (step === 2 && (area === '' || city === '' || state === '' || pincode === '' || location === '' || openingTime === '' || closingTime === '')) {
-            alert('Please fill all the fields before proceeding to the next step');
-            return;
-        }
+        // if (step === 1 && (restaurantName === '' || mobileNumber === '' || cuisineType === '' || imageUrl === '')) {
+        //     alert('Please fill all the fields before proceeding to the next step');
+        //     return;
+        // }
+        // if (step === 2 && (area === '' || city === '' || state === '' || pincode === '' || location === '' || openingTime === '' || closingTime === '')) {
+        //     alert('Please fill all the fields before proceeding to the next step');
+        //     return;
+        // }
         setStep(step + 1);
     };
     const handleBack = () => setStep(step - 1);
