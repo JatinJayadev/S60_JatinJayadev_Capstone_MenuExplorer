@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './ManageRestaurant.css';  // Import CSS file
 
 function ManageRestaurant() {
     const [ownedRestaurants, setOwnedRestaurants] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -14,22 +17,32 @@ function ManageRestaurant() {
         })
             .then((response) => {
                 setOwnedRestaurants(response.data);
-                console.log(response)
             })
             .catch((err) => {
                 console.log(err);
             });
     }, []);
 
+    const handleRestaurantClick = (id) => {
+        navigate(`/restaurants/${id}`);  // Navigate to restaurant details page
+    };
+
     return (
-        <div>
+        <div className="manage-restaurants">
             <h1>Manage Restaurants</h1>
-            {ownedRestaurants.map((restaurant) => (
-                <div key={restaurant._id} className="restaurant-card">
-                    <h2>{restaurant.restaurantName}</h2>
-                    <p>Cuisine: {restaurant.cuisineType}</p>
-                </div>
-            ))}
+            <div className="restaurant-list">
+                {ownedRestaurants.map((restaurant) => (
+                    <div
+                        key={restaurant._id}
+                        className="restaurant-card"
+                        onClick={() => handleRestaurantClick(restaurant._id)}
+                    >
+                        <h2>{restaurant.restaurantName}</h2>
+                        <p>Cuisine: {restaurant.cuisineType}</p>
+                        <img src={restaurant.image} alt={`${restaurant.restaurantName} image`} className="restaurant-image" />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

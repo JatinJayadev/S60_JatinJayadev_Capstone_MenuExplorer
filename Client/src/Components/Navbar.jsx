@@ -17,8 +17,11 @@ function Navbar() {
                     <p>
                         <Link to='/addRestuarant' className='nav-link'>Add a Restaurant</Link>
                     </p>
-                    <p>
+                    {/* <p>
                         <Link className='nav-link'>About</Link>
+                    </p> */}
+                    <p>
+                        <Link className='nav-link' to='/manage-restaurants'>Manage Restaurant</Link>
                     </p>
                     <p>
                         <Link className='nav-link'>Profile</Link>
