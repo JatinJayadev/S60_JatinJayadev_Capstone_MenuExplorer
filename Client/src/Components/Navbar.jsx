@@ -1,7 +1,7 @@
 import './Nav.css'
 import { Link } from 'react-router-dom'
 
-function Navbar() {
+function Navbar({ searchQuery, setSearchQuery }) {
     return (
         <nav>
             <div className='nav-div'>
@@ -11,7 +11,9 @@ function Navbar() {
                     </h2>
                 </div>
                 <div className='nav-input'>
-                    <input type="search" placeholder='Search for Restaurant' />
+                    <input type="search" placeholder='Search for Restaurant'
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)} />
                 </div>
                 <div className='nav-div nav-div-p'>
                     <p>
