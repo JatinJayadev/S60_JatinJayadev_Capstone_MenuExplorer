@@ -19,6 +19,8 @@ const RestaurantForm = () => {
     const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
 
+    const token = localStorage.getItem('token');
+
     const handleAddCategory = () => setMenu([...menu, { category: '', items: [] }]);
 
     const handleCategoryChange = (index, value) => {
@@ -58,7 +60,11 @@ const RestaurantForm = () => {
             restaurantName, mobileNumber, area, city, state, pincode, location, openingTime, closingTime, cuisineType, image: imageUrl, menu
         };
 
-        axios.post('http://localhost:4050/addRestaurant', restaurantDetails)
+        axios.post('http://localhost:4050/addRestaurant', restaurantDetails, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
             .then((res) => {
                 console.log(res)
                 navigate('/');

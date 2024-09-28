@@ -16,8 +16,8 @@ const Login = ({ setUserProfileLink, userProfileLink }) => {
         axios.post('http://localhost:4050/login', { email, password })
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('role', response.data.role);
                 setUserProfileLink(response.data.profileLink)
-                console.log(userProfileLink)
                 alert('Login successful');
                 console.log(response)
                 navigate('/');

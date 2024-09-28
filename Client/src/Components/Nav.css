@@ -41,6 +41,7 @@ h2 {
 .profile-container {
     display: flex;
     align-items: center;
+    margin-right: 10vh;
     gap: 10px;
 }
 

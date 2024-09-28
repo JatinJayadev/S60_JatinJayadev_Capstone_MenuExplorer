@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './ManageRestaurant.css';  // Import CSS file
+import './ManageRestaurant.css';
 
 function ManageRestaurant() {
     const [ownedRestaurants, setOwnedRestaurants] = useState([]);
@@ -24,7 +24,7 @@ function ManageRestaurant() {
     }, []);
 
     const handleRestaurantClick = (id) => {
-        navigate(`/restaurants/${id}`);  // Navigate to restaurant details page
+        navigate(`/restaurants/${id}`);
     };
 
     return (
