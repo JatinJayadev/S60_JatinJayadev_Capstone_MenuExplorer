@@ -1,5 +1,5 @@
 // components/Signup.js
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import GoogleSignup from '../Firebase/FirebaseSignup';
 import { Link } from 'react-router-dom';
@@ -9,13 +9,30 @@ import './Auth.css'
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [photoLink, setPhotoLink] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    //hi
+    const wid = useRef(null);
+
+    useEffect(() => {
+        let myWidget = cloudinary.createUploadWidget(
+            {
+                cloudName: "dvfqbegfy",
+                uploadPreset: "MenuExplorer",
+            },
+            (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log("Done! Here is the image info: ", result.info.secure_url);
+                    setPhotoLink(result.info.secure_url)
+                }
+            }
+        );
+        wid.current = myWidget;
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4050/register', { name, email, password })
+        axios.post('http://localhost:4050/register', { name, email, password, photoLink })
             .then(() => {
                 alert('Signup successful');
                 navigate('/login');
@@ -61,6 +78,15 @@ const Signup = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                        <label htmlFor="">Upload Photo</label>
+                        <button onClick={() => {
+                            wid.current.open();
+                        }} >Upload</button>
+                        {photoLink && (
+                            <div>
+                                <span>Image uploaded successfully!</span>
+                            </div>
+                        )}
                         <button type="submit">Signup</button>
                     </form>
                 </div>
@@ -70,8 +96,8 @@ const Signup = () => {
                 <div className='span'>
                     <span>Have an account? <Link to="/login">Login here</Link> </span>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

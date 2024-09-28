@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import './Auth.css'
 
-const Login = () => {
+const Login = ({ setUserProfileLink, userProfileLink }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -16,6 +16,8 @@ const Login = () => {
         axios.post('http://localhost:4050/login', { email, password })
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
+                setUserProfileLink(response.data.profileLink)
+                console.log(userProfileLink)
                 alert('Login successful');
                 console.log(response)
                 navigate('/');

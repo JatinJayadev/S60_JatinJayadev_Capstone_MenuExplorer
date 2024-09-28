@@ -9,13 +9,15 @@ import ManageRestaurant from "./Components/Restaurant/ManageRestaurant"
 import Navbar from "./Components/Navbar"
 
 function App() {
+  const [userProfileLink, setUserProfileLink] = useState(null);
+
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <div>
-      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} userProfileLink={userProfileLink} />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUserProfileLink={setUserProfileLink} userProfileLink={userProfileLink} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Restaurants searchQuery={searchQuery} />} />
         <Route path="/addRestuarant" element={<RestaurantForm />} />

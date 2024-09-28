@@ -32,7 +32,7 @@ app.get('/users', (req, res) => {
 })
 
 app.post('/register', (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, photoLink } = req.body;
 
     User.findOne({ email })
         .then((existingUser) => {
@@ -43,7 +43,7 @@ app.post('/register', (req, res) => {
             const hashedPassword = hashPassword(password);
 
             User.create({
-                name, email, password: hashedPassword, roles: 'user'
+                name, email, password: hashedPassword, roles: 'user', photo: photoLink
             })
                 .then((result) => {
                     res.status(201).send(result);
@@ -85,7 +85,7 @@ app.post('/login', (req, res) => {
 
         if (plainText == user.password) {
             const token = generateToken(user._id, user.roles);
-            return res.status(201).send({ message: 'Logged In Successfully', token })
+            return res.status(201).send({ message: 'Logged In Successfully', token, profileLink: user.photo })
         } else {
             return res.status(401).send({ message: 'Invalid Credentials' })
         }
