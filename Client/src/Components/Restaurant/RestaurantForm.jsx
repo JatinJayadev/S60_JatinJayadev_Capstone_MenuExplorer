@@ -19,19 +19,6 @@ const RestaurantForm = () => {
     const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
 
-    const handleNext = () => {
-        if (step === 1 && (restaurantName === '' || mobileNumber === '' || cuisineType === '' || imageUrl === '')) {
-            alert('Please fill all the fields before proceeding to the next step');
-            return;
-        }
-        if (step === 2 && (area === '' || city === '' || state === '' || pincode === '' || location === '' || openingTime === '' || closingTime === '')) {
-            alert('Please fill all the fields before proceeding to the next step');
-            return;
-        }
-        setStep(step + 1);
-    };
-    const handleBack = () => setStep(step - 1);
-
     const handleAddCategory = () => setMenu([...menu, { category: '', items: [] }]);
 
     const handleCategoryChange = (index, value) => {
@@ -51,6 +38,19 @@ const RestaurantForm = () => {
         newMenu[catIndex].items[itemIndex][field] = value;
         setMenu(newMenu);
     };
+
+    const handleNext = () => {
+        if (step === 1 && (restaurantName === '' || mobileNumber === '' || cuisineType === '' || imageUrl === '')) {
+            alert('Please fill all the fields before proceeding to the next step');
+            return;
+        }
+        if (step === 2 && (area === '' || city === '' || state === '' || pincode === '' || location === '' || openingTime === '' || closingTime === '')) {
+            alert('Please fill all the fields before proceeding to the next step');
+            return;
+        }
+        setStep(step + 1);
+    };
+    const handleBack = () => setStep(step - 1);
 
     const handleSubmit = (e) => {
         e.preventDefault();
