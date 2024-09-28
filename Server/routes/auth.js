@@ -2,11 +2,22 @@ const express = require('express')
 const User = require('../models/User')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
+const nodemailer = require("nodemailer");
+const otpGenerator = require("otp-generator");
+const bcrypt = require("bcryptjs");
 
 require('dotenv').config()
 
 const app = express()
 app.use(express.json())
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "blogiepost@gmail.com",
+        pass: "vuvmzygkwombzvur",
+    },
+});
 
 function hashPassword(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
@@ -20,6 +31,68 @@ function generateToken(userId, role) {
     });
     return token;
 }
+
+app.post('/forgot-password', async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const otp = otpGenerator.generate(6, {
+            upperCaseAlphabets: false,
+            specialChars: false,
+            lowerCaseAlphabets: false
+        });
+
+        const hashedOtp = bcrypt.hashSync(otp, 10);
+
+        const mailOptions = {
+            from: "blogiepost@gmail.com",
+            to: email,
+            subject: "Your OTP for Password Reset",
+            html: `<h1>Hey, welcome!</h1> <p>Here is your OTP for password reset:</p> <h2>${otp}</h2>`
+        };
+
+        await transporter.sendMail(mailOptions);
+        console.log("OTP sent to email:", email);
+
+        res.json({ hashedOtp });
+    } catch (error) {
+        console.error("Error sending OTP:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+const updateUserPassword = async (email, newPassword) => {
+    try {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        const hashedPassword = hashPassword(newPassword);
+
+        user.password = hashedPassword;
+        await user.save();
+        console.log('Password updated successfully');
+        return true;
+    } catch (error) {
+        console.error('Error updating password:', error);
+        throw new Error('Error updating password');
+    }
+};
+
+app.post('/verify-otp', async (req, res) => {
+    const { email, otp, newPassword, hashedOtp } = req.body;
+
+    const isOtpValid = bcrypt.compareSync(otp, hashedOtp);
+
+    if (isOtpValid) {
+        await updateUserPassword(email, newPassword);
+        res.json({ message: 'Password updated successfully' });
+    } else {
+        res.status(400).json({ error: 'Invalid OTP' });
+    }
+});
 
 app.get('/users', (req, res) => {
     User.find()
