@@ -5,7 +5,6 @@ function Navbar({ searchQuery, setSearchQuery, userProfileLink }) {
     const navigate = useNavigate();
     let isLoggedIn = false;
 
-    // Check if the user is logged in by checking for a token in localStorage
     if (localStorage.getItem('token')) {
         isLoggedIn = true;
     } else {
@@ -13,9 +12,7 @@ function Navbar({ searchQuery, setSearchQuery, userProfileLink }) {
     }
 
     const logout = () => {
-        // Remove the token from localStorage
         localStorage.removeItem('token');
-        // Redirect to login page
         navigate('/login');
     };
 
