@@ -4,16 +4,20 @@ const app = express()
 const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
 const restaurantRoute = require('./routes/Restaurant')
+const Razorpay = require('./routes/razorpay')
 
 app.use(cors())
 app.use(express.json())
 app.use("/", authRoute)
 app.use("/", restaurantRoute)
+app.use("/", Razorpay)
 
 require('dotenv').config()
 
 const port = process.env.PORT || 4050;
 const URI = process.env.URI
+
+
 
 mongoose.connect(URI)
     .then(() => {
