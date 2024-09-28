@@ -12,40 +12,41 @@ function Navbar({ searchQuery, setSearchQuery, userProfileLink }) {
         isLoggedIn = false;
     }
 
-    const handlePayment = async () => {
-        try {
-            const orderResponse = await axios.post(
-                "http://localhost:4050/razorPay",
-            );
+    // const handlePayment = async () => {
+    //     try {
+    //         const orderResponse = await axios.post(
+    //             "http://localhost:4050/razorPay",
+    //         );
 
-            const { amount, id: order_id, currency } = orderResponse.data;
+    //         const { amount, id: order_id, currency } = orderResponse.data;
 
-            const options = {
-                key: "rzp_test_EzUsahd1tsDo2l",
-                amount: amount.toString(),
-                currency: currency,
-                name: "MenuExplorer",
-                description: "Test Transaction",
-                order_id: order_id,
-                handler: async function (response) {
-                    console.log(response)
-                    alert("Payment Successful!");
-                },
-                prefill: {
-                    name: "Jatin Jayadev"
-                },
-                theme: {
-                    color: "#000000",
-                },
-            };
+    //         const options = {
+    //             key: "rzp_test_EzUsahd1tsDo2l",
+    //             amount: amount.toString(),
+    //             currency: currency,
+    //             name: "MenuExplorer",
+    //             description: "Test Transaction",
+    //             order_id: order_id,
+    //             handler: async function (response) {
+    //                 console.log(response)
+    //                 alert("Payment Successful!");
+    //             },
+    //             prefill: {
+    //                 name: "Jatin Jayadev"
+    //             },
+    //             theme: {
+    //                 color: "#000000",
+    //             },
+    //         };
 
-            const paymentObject = new window.Razorpay(options);
-            paymentObject.open();
-        } catch (error) {
-            console.error("Payment Error:", error);
-            alert("Payment failed. Please try again.");
-        }
-    };
+    //         const paymentObject = new window.Razorpay(options);
+    //         paymentObject.open();
+    //     } catch (error) {
+    //         console.error("Payment Error:", error);
+    //         alert("Payment failed. Please try again.");
+    //     }
+    // };
+
     const logout = () => {
         localStorage.removeItem('token');
         navigate('/login');
@@ -90,7 +91,7 @@ function Navbar({ searchQuery, setSearchQuery, userProfileLink }) {
                             <Link className='nav-link' to='/login'>Login</Link>
                         </p>
                     )}
-                    <p onClick={handlePayment}>Razor</p>
+                    {/* <p onClick={handlePayment}>Razor</p> */}
                 </div>
             </div>
         </nav>
