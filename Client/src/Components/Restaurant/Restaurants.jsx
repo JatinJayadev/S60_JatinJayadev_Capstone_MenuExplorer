@@ -36,4 +36,3 @@ function Restaurants({ searchQuery }) {
 }
 
 export default Restaurants;
-

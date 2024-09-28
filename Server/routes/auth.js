@@ -153,13 +153,3 @@ app.delete('/deleteuser/:id', (req, res) => {
 })
 
 module.exports = app;
-
-
-
-// https://chatgpt.com/c/515ba880-6dd7-45e9-a2c0-e9f86306b13e
-
-// https://chatgpt.com/c/a970bd9c-6242-4428-a42f-2396ea272769
-
-// https://chatgpt.com/c/e986323b-41f9-40cd-affc-eb91904e0898
-
-// https://chatgpt.com/c/dbede3cc-7f6b-47f8-a30a-652cb5990304
