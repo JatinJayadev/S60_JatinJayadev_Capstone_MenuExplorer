@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Restaurants from "./Components/Restaurant/Restaurants"
 import Login from "./Components/Auth/Login"
 import RestaurantForm from "./Components/Restaurant/RestaurantForm"
@@ -8,14 +9,15 @@ import ManageRestaurant from "./Components/Restaurant/ManageRestaurant"
 import Navbar from "./Components/Navbar"
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <div>
-      <Navbar />
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Restaurants />} />
+        <Route path="/" element={<Restaurants searchQuery={searchQuery} />} />
         <Route path="/addRestuarant" element={<RestaurantForm />} />
         <Route path="/restaurants/:id" element={<RestaurantDetails />} />
         <Route path="/manage-restaurants" element={<ManageRestaurant />} />
