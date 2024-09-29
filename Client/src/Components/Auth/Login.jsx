@@ -125,9 +125,9 @@ const Login = ({ setUserProfileLink, userProfileLink }) => {
                 </div>
                 {!isForgotPassword && (
                     <>
-                        <div>
+                        {/* <div>
                             <GoogleLogin />
-                        </div>
+                        </div> */}
                         <div className='span'>
                             <span>Don't have an account? <Link to="/signup">SignUp here</Link></span>
                         </div>

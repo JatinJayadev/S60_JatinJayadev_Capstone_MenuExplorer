@@ -90,9 +90,9 @@ const Signup = () => {
                         <button type="submit">Signup</button>
                     </form>
                 </div>
-                <div>
+                {/* <div>
                     <GoogleSignup />
-                </div>
+                </div> */}
                 <div className='span'>
                     <span>Have an account? <Link to="/login">Login here</Link> </span>
                 </div>

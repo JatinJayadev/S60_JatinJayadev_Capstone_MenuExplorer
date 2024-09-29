@@ -24,7 +24,7 @@ function RestaurantDetails() {
     const navigate = useNavigate();
 
     const getBack = () => {
-        navigate('/manage-restaurants')
+        navigate('/')
     }
 
     useEffect(() => {
