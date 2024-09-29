@@ -109,25 +109,69 @@ li ul li span {
     margin-bottom: 10px;
 }
 
+.restaurant-actions button {
+    margin-right: 10px;
+    padding: 10px;
+    background-color: black;
+    /* Red for delete */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.restaurant-actions button:hover {
+    background-color: black;
+    /* Darker red on hover */
+}
+
+
+/* Modal Background */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
+    overflow-y: auto;
+    /* Allow scrolling */
 }
 
+/* Modal Content */
 .modal-content {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    width: 400px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-height: 90vh;
+    /* Constrain height to viewport */
+    overflow-y: auto;
+    /* Enable scrolling within the modal */
+    z-index: 10000;
 }
 
+/* Modal close button */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+/* Form elements inside modal */
 .modal .form-group {
     margin-bottom: 15px;
 }
@@ -147,7 +191,7 @@ li ul li span {
 .modal button {
     margin-right: 10px;
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 5px;
@@ -158,7 +202,19 @@ li ul li span {
     background-color: #dc3545;
 }
 
+.item-actions,
+.category-actions {
+    display: flex;
+    justify-content: flex-end;
+}
 
+.item-actions>button,
+.category-actions>button {
+    margin-right: 10px;
+    padding: 10px;
+}
+
+/* Responsive design */
 @media (max-width: 600px) {
     .restaurant-details-container {
         padding: 15px;
@@ -174,5 +230,10 @@ li ul li span {
 
     li ul li {
         font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        /* Adjust modal width for small screens */
     }
 }
