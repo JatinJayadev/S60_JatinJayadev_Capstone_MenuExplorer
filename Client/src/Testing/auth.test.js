@@ -2,7 +2,7 @@ const axios = require('axios');
 
 describe('Login Route testing', () => {
     test('should return a token for valid credentials', async () => {
-        const response = await axios.post('http://localhost:4050/login', {
+        const response = await axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/login', {
             email: 'jayadevjatin@gmail.com',
             password: '12345'
         });
@@ -12,7 +12,7 @@ describe('Login Route testing', () => {
 
     test('should return 401 for invalid credentials', async () => {
         try {
-            const response = await axios.post('http://localhost:4050/login', {
+            const response = await axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/login', {
                 email: 'jayadevjatin@gmail.com',
                 password: '123456'
             });
@@ -24,7 +24,7 @@ describe('Login Route testing', () => {
 
     test('should return 404 for user not in database', async () => {
         try {
-            await axios.post('http://localhost:4050/login', {
+            await axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/login', {
                 email: 'jayadevjjatin@gmail.com',
                 password: '1234'
             });
@@ -38,7 +38,7 @@ describe('Login Route testing', () => {
 
 describe('Register Route Testing', () => {
     test('should register a new user successfully', async () => {
-        const response = await axios.post('http://localhost:4050/register', {
+        const response = await axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/register', {
             name: 'Jatin',
             email: 'Jayadev@gmail.com',
             password: '123',
@@ -53,7 +53,7 @@ describe('Register Route Testing', () => {
 
     test('should not allow registration with an existing email', async () => {
         try {
-            await axios.post('http://localhost:4050/register', {
+            await axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/register', {
                 name: 'Jatin',
                 email: 'Jayadev@gmail.com',
                 password: '123',
@@ -67,7 +67,7 @@ describe('Register Route Testing', () => {
 
     test('should return 500 for server error', async () => {
         try {
-            await axios.post('http://localhost:4050/register', {
+            await axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/register', {
                 name: '',
                 email: '',
                 password: '',

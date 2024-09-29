@@ -29,7 +29,3 @@ function App() {
 }
 
 export default App
-
-
-
-// https://chatgpt.com/c/915724f3-bfc2-4061-9791-ea9c713ce4a4

@@ -10,7 +10,7 @@ function ManageRestaurant() {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        axios.get('http://localhost:4050/restaurantsOwned', {
+        axios.get('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/restaurantsOwned', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -32,7 +32,7 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4050/register', { name, email, password, photoLink })
+        axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/register', { name, email, password, photoLink })
             .then(() => {
                 alert('Signup successful');
                 navigate('/login');

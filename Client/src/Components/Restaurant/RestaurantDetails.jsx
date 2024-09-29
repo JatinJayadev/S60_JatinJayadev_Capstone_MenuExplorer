@@ -32,7 +32,7 @@ function RestaurantDetails() {
         const loggedUserId = localStorage.getItem('userID');
         setUserId(loggedUserId);
 
-        axios.get(`http://localhost:4050/restaurants/${id}`, {
+        axios.get(`https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/restaurants/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -63,7 +63,7 @@ function RestaurantDetails() {
     const handleDeleteSectionClick = (categoryId) => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`http://localhost:4050/restaurants/${id}/menu/${categoryId}`, {
+        axios.delete(`https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/restaurants/${id}/menu/${categoryId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -97,7 +97,7 @@ function RestaurantDetails() {
         e.preventDefault();
         const token = localStorage.getItem('token');
 
-        axios.put(`http://localhost:4050/restaurants/${id}/menu/${currentCategory._id}`, currentCategory, {
+        axios.put(`https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/restaurants/${id}/menu/${currentCategory._id}`, currentCategory, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -121,7 +121,7 @@ function RestaurantDetails() {
         e.preventDefault();
         const token = localStorage.getItem('token');
 
-        axios.put(`http://localhost:4050/restaurants/${id}`, updatedRestaurant, {
+        axios.put(`https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/restaurants/${id}`, updatedRestaurant, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -138,7 +138,7 @@ function RestaurantDetails() {
     const handleDeleteRestaurant = () => {
         const token = localStorage.getItem('token');
 
-        axios.delete(`http://localhost:4050/restaurants/${id}`, {
+        axios.delete(`https://s60-jatinjayadev-capstone-menuexplorer.onrender.comrestaurants/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

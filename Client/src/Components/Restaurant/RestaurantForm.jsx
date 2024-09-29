@@ -60,7 +60,7 @@ const RestaurantForm = () => {
             restaurantName, mobileNumber, area, city, state, pincode, location, openingTime, closingTime, cuisineType, image: imageUrl, menu
         };
 
-        axios.post('http://localhost:4050/addRestaurant', restaurantDetails, {
+        axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/addRestaurant', restaurantDetails, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

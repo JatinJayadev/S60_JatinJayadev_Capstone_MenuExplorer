@@ -15,7 +15,7 @@ const Login = ({ setUserProfileLink, userProfileLink }) => {
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:4050/login', { email, password })
+        axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/login', { email, password })
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('role', response.data.role);
@@ -34,7 +34,7 @@ const Login = ({ setUserProfileLink, userProfileLink }) => {
     const handleForgotPassword = (e) => {
         e.preventDefault();
         if (!otpSent) {
-            axios.post('http://localhost:4050/forgot-password', { email })
+            axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/forgot-password', { email })
                 .then((response) => {
                     sessionStorage.setItem('hashedOtp', response.data.hashedOtp);
                     setOtpSent(true);
@@ -46,7 +46,7 @@ const Login = ({ setUserProfileLink, userProfileLink }) => {
                 });
         } else {
             const hashedOtp = sessionStorage.getItem('hashedOtp');
-            axios.post('http://localhost:4050/verify-otp', { email, otp, newPassword, hashedOtp })
+            axios.post('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/verify-otp', { email, otp, newPassword, hashedOtp })
                 .then((response) => {
                     alert('Password updated successfully');
                     setOtpSent(false);

@@ -7,7 +7,7 @@ function Restaurants({ searchQuery }) {
     const [restaurants, setRestaurants] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:4050/restaurants')
+        axios.get('https://s60-jatinjayadev-capstone-menuexplorer.onrender.com/restaurants')
             .then((response) => {
                 console.log(response.data);
                 setRestaurants(response.data);
