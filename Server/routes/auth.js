@@ -158,7 +158,7 @@ app.post('/login', (req, res) => {
 
         if (plainText == user.password) {
             const token = generateToken(user._id, user.roles);
-            return res.status(200).send({ message: 'Logged In Successfully', token, profileLink: user.photo, role: user.roles })
+            return res.status(200).send({ message: 'Logged In Successfully', token, profileLink: user.photo, role: user.roles, userID: user._id })
         } else {
             return res.status(401).send({ message: 'Invalid Credentials' })
         }
