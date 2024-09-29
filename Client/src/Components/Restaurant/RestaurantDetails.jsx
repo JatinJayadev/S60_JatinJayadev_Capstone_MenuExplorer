@@ -158,170 +158,174 @@ function RestaurantDetails() {
     }
 
     return (
-        <div className="restaurant-details">
+        <div className='restaurants-container'>
             <h1>{restaurant.restaurantName}</h1>
-            <p>Location: {restaurant.area}, {restaurant.city}, {restaurant.state} - {restaurant.pincode}</p>
-            <p>Opening Time: {restaurant.openingTime}</p>
-            <p>Closing Time: {restaurant.closingTime}</p>
-            <p>Cuisine: {restaurant.cuisineType}</p>
-            <p>Location: <a href={restaurant.location} target="_blank" rel="noopener noreferrer">Google Maps Link</a></p>
+            <div className="restaurant-details">
+                <p>Location: {restaurant.area}, {restaurant.city}, {restaurant.state} - {restaurant.pincode}</p>
+                <p>Opening Time: {restaurant.openingTime}</p>
+                <p>Closing Time: {restaurant.closingTime}</p>
+                <p>Cuisine: {restaurant.cuisineType}</p>
+                <p>Location: <a href={restaurant.location} target="_blank" rel="noopener noreferrer">Google Maps Link</a></p>
 
-            <h3>Menu</h3>
-            {restaurant.menu.map((category, index) => (
-                <div key={index} className="menu-category">
-                    <h4>{category.category}</h4>
-                    {category.items.map((item, idx) => (
-                        <div key={idx} className="menu-item">
-                            <p>{item.name} - ₹{item.price}</p>
-                            <p>{item.description}</p>
-                        </div>
-                    ))}
-                    {restaurant.owner === userId && (
-                        <div className="category-actions">
-                            <button onClick={() => handleUpdateSectionClick(category)}>Update Section</button>
-                            <button onClick={() => handleDeleteSectionClick(category._id)}>Delete Section</button>
-                        </div>
-                    )}
-                </div>
-            ))}
+                <h3>Menu</h3>
+                {restaurant.menu.map((category, index) => (
+                    <div key={index} className="menu-category">
+                        <h4>{category.category}</h4>
+                        {category.items.map((item, idx) => (
+                            <div key={idx} className="menu-item">
+                                <p>{item.name} - ₹{item.price}</p>
+                                <p>{item.description}</p>
+                            </div>
+                        ))}
+                        {restaurant.owner === userId && (
+                            <div className="category-actions">
+                                <button onClick={() => handleUpdateSectionClick(category)}>Update Section</button>
+                                <button onClick={() => handleDeleteSectionClick(category._id)}>Delete Section</button>
+                            </div>
+                        )}
+                    </div>
+                ))}
 
-            {/* Buttons to open restaurant update modal and delete restaurant */}
-            {restaurant.owner === userId && (
+                {/* Buttons to open restaurant update modal and delete restaurant */}
+                {restaurant.owner === userId && (
+                    <div className="restaurant-actions">
+                        <button onClick={() => setShowRestaurantModal(true)}>Update Restaurant Details</button>
+                        <button onClick={handleDeleteRestaurant}>Delete Restaurant</button>
+                    </div>
+                )}
                 <div className="restaurant-actions">
-                    <button onClick={() => setShowRestaurantModal(true)}>Update Restaurant Details</button>
-                    <button onClick={handleDeleteRestaurant}>Delete Restaurant</button>
                     <button onClick={getBack}>Back</button>
                 </div>
-            )}
 
-            {/* Update Section Modal */}
-            {showCategoryModal && currentCategory && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2>Update Section</h2>
-                        <form onSubmit={handleCategoryModalSubmit}>
-                            <div className="form-group">
-                                <label>Category Name</label>
-                                <input
-                                    type="text"
-                                    value={currentCategory.category}
-                                    onChange={(e) => setCurrentCategory({ ...currentCategory, category: e.target.value })}
-                                />
-                            </div>
-                            <h3>Items in this Category</h3>
-                            {currentCategory.items.map((item, idx) => (
-                                <div key={idx} className="menu-item">
-                                    <div className="form-group">
-                                        <label>Name</label>
-                                        <input
-                                            type="text"
-                                            value={item.name}
-                                            onChange={(e) => handleCategoryInputChange(idx, 'name', e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Price</label>
-                                        <input
-                                            type="number"
-                                            value={item.price}
-                                            onChange={(e) => handleCategoryInputChange(idx, 'price', e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Description</label>
-                                        <textarea
-                                            value={item.description}
-                                            onChange={(e) => handleCategoryInputChange(idx, 'description', e.target.value)}
-                                        />
-                                    </div>
-                                    <button type="button" onClick={() => handleDeleteMenuClick(item._id)}>Delete Menu</button>
+                {/* Update Section Modal */}
+                {showCategoryModal && currentCategory && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h2>Update Section</h2>
+                            <form onSubmit={handleCategoryModalSubmit}>
+                                <div className="form-group">
+                                    <label>Category Name</label>
+                                    <input
+                                        type="text"
+                                        value={currentCategory.category}
+                                        onChange={(e) => setCurrentCategory({ ...currentCategory, category: e.target.value })}
+                                    />
                                 </div>
-                            ))}
-                            <button type="button" onClick={handleAddMenuClick}>Add Menu</button>
-                            <button type="submit">Update Section</button>
-                            <button type="button" onClick={() => setShowCategoryModal(false)}>Cancel</button>
-                        </form>
+                                <h3>Items in this Category</h3>
+                                {currentCategory.items.map((item, idx) => (
+                                    <div key={idx} className="menu-item">
+                                        <div className="form-group">
+                                            <label>Name</label>
+                                            <input
+                                                type="text"
+                                                value={item.name}
+                                                onChange={(e) => handleCategoryInputChange(idx, 'name', e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Price</label>
+                                            <input
+                                                type="number"
+                                                value={item.price}
+                                                onChange={(e) => handleCategoryInputChange(idx, 'price', e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Description</label>
+                                            <textarea
+                                                value={item.description}
+                                                onChange={(e) => handleCategoryInputChange(idx, 'description', e.target.value)}
+                                            />
+                                        </div>
+                                        <button type="button" onClick={() => handleDeleteMenuClick(item._id)}>Delete Menu</button>
+                                    </div>
+                                ))}
+                                <button type="button" onClick={handleAddMenuClick}>Add Menu</button>
+                                <button type="submit">Update Section</button>
+                                <button type="button" onClick={() => setShowCategoryModal(false)}>Cancel</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* Update Restaurant Modal */}
-            {showRestaurantModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2>Update Restaurant</h2>
-                        <form onSubmit={handleRestaurantModalSubmit}>
-                            <div className="form-group">
-                                <label>Restaurant Name</label>
-                                <input
-                                    type="text"
-                                    value={updatedRestaurant.restaurantName}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, restaurantName: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Area</label>
-                                <input
-                                    type="text"
-                                    value={updatedRestaurant.area}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, area: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>City</label>
-                                <input
-                                    type="text"
-                                    value={updatedRestaurant.city}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, city: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>State</label>
-                                <input
-                                    type="text"
-                                    value={updatedRestaurant.state}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, state: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Pincode</label>
-                                <input
-                                    type="text"
-                                    value={updatedRestaurant.pincode}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, pincode: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Opening Time</label>
-                                <input
-                                    type="time"
-                                    value={updatedRestaurant.openingTime}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, openingTime: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Closing Time</label>
-                                <input
-                                    type="time"
-                                    value={updatedRestaurant.closingTime}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, closingTime: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Cuisine Type</label>
-                                <input
-                                    type="text"
-                                    value={updatedRestaurant.cuisineType}
-                                    onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, cuisineType: e.target.value })}
-                                />
-                            </div>
-                            <button type="submit">Update Restaurant</button>
-                            <button type="button" onClick={() => setShowRestaurantModal(false)}>Cancel</button>
-                        </form>
+                {/* Update Restaurant Modal */}
+                {showRestaurantModal && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h2>Update Restaurant</h2>
+                            <form onSubmit={handleRestaurantModalSubmit}>
+                                <div className="form-group">
+                                    <label>Restaurant Name</label>
+                                    <input
+                                        type="text"
+                                        value={updatedRestaurant.restaurantName}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, restaurantName: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Area</label>
+                                    <input
+                                        type="text"
+                                        value={updatedRestaurant.area}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, area: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>City</label>
+                                    <input
+                                        type="text"
+                                        value={updatedRestaurant.city}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, city: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>State</label>
+                                    <input
+                                        type="text"
+                                        value={updatedRestaurant.state}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, state: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Pincode</label>
+                                    <input
+                                        type="text"
+                                        value={updatedRestaurant.pincode}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, pincode: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Opening Time</label>
+                                    <input
+                                        type="time"
+                                        value={updatedRestaurant.openingTime}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, openingTime: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Closing Time</label>
+                                    <input
+                                        type="time"
+                                        value={updatedRestaurant.closingTime}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, closingTime: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Cuisine Type</label>
+                                    <input
+                                        type="text"
+                                        value={updatedRestaurant.cuisineType}
+                                        onChange={(e) => setUpdatedRestaurant({ ...updatedRestaurant, cuisineType: e.target.value })}
+                                    />
+                                </div>
+                                <button type="submit">Update Restaurant</button>
+                                <button type="button" onClick={() => setShowRestaurantModal(false)}>Cancel</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+        </div >
     );
 }
 

@@ -28,18 +28,17 @@ function ManageRestaurant() {
     };
 
     return (
-        <div className="manage-restaurants">
+        <div className="restaurants-container">
             <h1>Manage Restaurants</h1>
-            <div className="restaurant-list">
+            <div className="restaurants-div">
                 {ownedRestaurants.map((restaurant) => (
                     <div
                         key={restaurant._id}
-                        className="restaurant-card"
+                        className="restaurant-card restaurant-card-container"
                         onClick={() => handleRestaurantClick(restaurant._id)}
                     >
                         <h2>{restaurant.restaurantName}</h2>
                         <p>Cuisine: {restaurant.cuisineType}</p>
-                        <img src={restaurant.image} alt={`${restaurant.restaurantName} image`} className="restaurant-image" />
                     </div>
                 ))}
             </div>

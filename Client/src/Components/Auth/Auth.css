@@ -44,6 +44,7 @@
 
 .container {
     height: 100vh;
+    margin: 2%;
     justify-content: center;
     display: flex;
     align-items: center;

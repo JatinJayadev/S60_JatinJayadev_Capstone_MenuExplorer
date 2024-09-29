@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import './Restaurants.css'
 
 function Restaurants({ searchQuery }) {
     const [restaurants, setRestaurants] = useState([]);
@@ -21,16 +22,19 @@ function Restaurants({ searchQuery }) {
     );
 
     return (
-        <div>
+        <div className='restaurants-container'>
             <h1>Restaurants</h1>
-            {filteredRestaurants && filteredRestaurants.map((data) => (
-                <div key={data._id} className="restaurant-card">
-                    <Link to={`/restaurants/${data._id}`}>
-                        <h2>{data.restaurantName}</h2>
-                        <p>Cuisine: {data.cuisineType}</p>
-                    </Link>
-                </div>
-            ))}
+            <div className='restaurants-div'>
+                {filteredRestaurants && filteredRestaurants.map((data) => (
+                    <div key={data._id} className="restaurant-card restaurant-card-container ">
+                        <Link className='link-tag-none' to={`/restaurants/${data._id}`}>
+                            <h2>{data.restaurantName}</h2>
+                            <p>Cuisine: {data.cuisineType}</p>
+                        </Link>
+                    </div>
+                ))}
+            </div>
+
         </div>
     );
 }
