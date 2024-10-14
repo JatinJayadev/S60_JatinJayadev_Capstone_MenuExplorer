@@ -1,7 +1,7 @@
 // components/Signup.js
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import GoogleSignup from '../Firebase/FirebaseSignup';
+// import GoogleSignup from '../Firebase/FirebaseSignup';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css'
@@ -81,7 +81,7 @@ const Signup = () => {
                         <label htmlFor="">Upload Photo</label>
                         <button onClick={() => {
                             wid.current.open();
-                        }} >Upload</button>
+                        }} required >Upload</button>
                         {photoLink && (
                             <div>
                                 <span>Image uploaded successfully!</span>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import GoogleLogin from '../Firebase/FirebaseLogin';
+// import GoogleLogin from '../Firebase/FirebaseLogin';
 import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 
